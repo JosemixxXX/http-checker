@@ -1,5 +1,5 @@
 import requests
-import sys
+import argparse
 
 def iterar_sobre_archivo(path, funcion):
     try:
@@ -31,13 +31,16 @@ def write_file(code, url, file="enlaces_accesibles.txt"):
     with open(file, 'a') as f:
         f.write(f"{code} - {url}\n")
 
-def all_argvs():
-    return sys.argv[1:]
-
-def domainz(inputs):
-    iterar_sobre_archivo(inputs[0], comprobar_enlace)
+def domainz(input):
+    iterar_sobre_archivo(input, comprobar_enlace)
     print("Proceso finalizado.")
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Domainz")
+    parser.add_argument("-f","--file", help="Ruta del archivo")
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    inputs = all_argvs()
-    domainz(inputs)
+    input = parse_args()
+    domainz(input.file)
