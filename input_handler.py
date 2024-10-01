@@ -1,10 +1,6 @@
 # input handler with custom -- arguments
 
-import sys
 import argparse
-
-def all_argvs():
-    return sys.argv[1:]
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Domainz")
@@ -13,6 +9,7 @@ def parse_args():
     parser.add_argument("-o1", "--opcional1", help="Argumento opcional 1")
     parser.add_argument("-o2", "--opcional2", help="Argumento opcional 2")
     return parser.parse_args()
+
 
 args = parse_args()
 print(args)
